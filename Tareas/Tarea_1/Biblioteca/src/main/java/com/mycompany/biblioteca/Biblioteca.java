@@ -4,7 +4,13 @@
 
 package com.mycompany.biblioteca;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -12,6 +18,7 @@ import java.util.Scanner;
  */
 
 public class Biblioteca {
+    static Conexion cx;
     public static Biblioteca_ nBiblioteca= new Biblioteca_();
 
     public static void main(String[] args) {
@@ -29,9 +36,11 @@ public class Biblioteca {
             System.out.println("2. crear libro");
             System.out.println("3. mostrar armarios");
             System.out.println("4. mostrar libros");
-            System.out.println("5. cambiar ajustes de la biblioteca");
+            System.out.println("5. cambiar datos de la biblioteca");
             System.out.println("6. mostrar datos de la biblioteca");
-            System.out.println("7. Salir");
+            System.out.println("7. subir datos de la biblioteca");
+            System.out.println("8. Salir");
+            
             System.out.println("elige una opcion");
             
             decicion = sc.nextInt();
@@ -44,18 +53,24 @@ public class Biblioteca {
                     crearLibro() ;
                     break;
                 case 3:
-                    
+                    mostrarArmarios();
                     break;
                 case 4:
                     mostrarLibros() ;
                     break;
                 case 5:
-                    System.out.println("¡Hasta luego!");
+                    cambiarDatos();
+                    break;
+                case 6:
+                    cambiarDatos();
+                    break;
+                case 7:
+                    subirDatos();
                     break;
                 default:
-                    System.out.println("Opción inválida");
+                    System.out.println(nBiblioteca.toString());
             }
-        } while (decicion != 7);
+        } while (decicion != 8);
 
         sc.close();
         
@@ -105,6 +120,7 @@ public class Biblioteca {
         System.out.println("elija el armario");
         System.out.println("existen "+nBiblioteca.armarios.size()+" armarios");
         int armario=sc.nextInt();
+        armario--;
         nBiblioteca.armarios.get(armario).libros.add(nuevoLibro);  
     }
     public static void mostrarLibros()
@@ -114,10 +130,41 @@ public class Biblioteca {
             System.out.println("El armario "+x.codigo+" tiene los siguientes libros:");
             for(Libro i:x.libros)
             {
-                System.out.println(i.toString()1
+                System.out.println(i.toString()
                 );
                 
             }
+        }
+    }
+    public static void mostrarArmarios()
+    {
+        System.out.println("Usted tiene "+nBiblioteca.armarios.size()+" con sus respectivos codigos");
+    }
+    public static void cambiarDatos()
+    {
+        System.out.println("INTRODUZCA NOMBRE PARA LA BIBLIOTECA");
+        Scanner sc = new Scanner(System.in);
+        String dato=sc.nextLine();
+        nBiblioteca.nombre=dato;
+        System.out.println("INTRODUZCA TAMANIO PARA LA BIBLIOTECA");
+        int tamanio=sc.nextInt();
+        nBiblioteca.tamanio=tamanio;
+    }
+    public static void subirDatos()
+    {
+        try {
+            String query="INSERT INTO `biblioteca` (`id`, `nombre`, `tamaño_metros_cuadrados`) VALUES (NULL, ?, ?);";
+            cx=new Conexion("biblioteca_db");
+            
+            PreparedStatement ps=cx.conectar().prepareStatement(query);
+            ps.setString(1, nBiblioteca.nombre);
+            ps.setString(2, String.valueOf(nBiblioteca.tamanio));
+            ps.execute();
+            ps.close();
+            ps=null;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
