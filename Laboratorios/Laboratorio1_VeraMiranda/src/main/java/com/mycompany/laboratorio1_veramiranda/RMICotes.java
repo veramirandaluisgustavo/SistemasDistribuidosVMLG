@@ -17,6 +17,31 @@ public class RMICotes extends UnicastRemoteObject implements IEmpresa {
     List<Cliente> FacturasCliente=new ArrayList();
     public RMICotes() throws RemoteException {
         super();
+        
+        
+        //insertando datos de forma manual para simular una base de datos
+        Empresa empresa=new Empresa("cotes",123443432524L);
+        
+        Cliente cliente1=new Cliente();
+        Cliente cliente2=new Cliente();
+        
+        cliente1.idCliente=1;
+        cliente2.idCliente=2;
+        
+        Factura factura1=new Factura(empresa,154,Mes.diciembre,2021,150);
+        Factura factura2=new Factura(empresa,325,Mes.enero,2022,610);
+        Factura factura3=new Factura(empresa,326,Mes.enero,2022,701);
+        Factura factura4=new Factura(empresa,457,Mes.febrero,2022,801);
+        cliente1.facturasPendientes.add(factura1);
+        cliente1.facturasPendientes.add(factura3);
+        cliente2.facturasPendientes.add(factura2);
+        cliente2.facturasPendientes.add(factura4);
+        
+        this.FacturasCliente.add(cliente1);
+        this.FacturasCliente.add(cliente2);
+        //////////////////////////////////////////////////////////////////
+        
+        
     }
 
     @Override

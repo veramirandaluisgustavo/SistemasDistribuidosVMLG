@@ -17,18 +17,32 @@ import java.util.Scanner;
 public class ClienteService {
     public static void main(String[] args) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry(1099);
-        IBanco stub = (IBanco) registry.lookup("Banco");
+        IBanco stub = (IBanco) registry.lookup("ServidorBanco");
         
         Scanner sc=new Scanner(System.in);
-        int eleccion =sc.nextInt();
+        
+        int eleccion;
+        System.out.println("HASTA AQUI");
         do{
         System.out.println("ELIGE UNA OPCION:");
         System.out.println("1 mostrar facturas");
         System.out.println("2 pagar factura");
         System.out.println("3 salir");
-        
+        eleccion =sc.nextInt();
+        int id;
         switch(eleccion){
-            case:1
+            case 1:
+                System.out.println("introduce el id del cliente: ");
+                 id=sc.nextInt();
+                mostrarFacturas(stub.calcular(id));break;
+                
+            case 2: 
+                System.out.println("introduce el id del cliente: ");
+                 id=sc.nextInt();
+                pagarf(stub.calcular(id),stub);break;
+            case 3 :System.out.println("CERRANDO SERVICIO");break;
+            default : System.out.println("introduce una opcion valida ");break;
+                
         }
         
         
@@ -41,7 +55,7 @@ public class ClienteService {
         
         
     }
-    public static void mostrarFacturas(Factura[] facturas){
+    public static void mostrarFacturas(Factura[] facturas ){
         
         if(facturas==null)return;
         System.out.println("TUS FACTURAS PENDIENTES SON:");
@@ -50,4 +64,22 @@ public class ClienteService {
             System.out.println(fac.toString());
         }
     }
+    public static void pagarf(Factura[] facturas,IBanco stub) throws RemoteException{
+        Scanner sc=new Scanner(System.in);
+        System.out.println("introduce el id de la factura: ");
+        int id=sc.nextInt();
+        for(Factura fac:facturas){
+            if(fac.idfactura==id){
+                Factura[] factu={fac};
+                String respuesta=stub.Pagar(factu);
+                System.out.println(respuesta);
+                break;
+            }
+        }
+        
+        
+                
+    }
+    
+    
 }

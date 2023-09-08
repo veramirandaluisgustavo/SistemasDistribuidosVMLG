@@ -17,6 +17,34 @@ public class RMICessa extends UnicastRemoteObject implements IEmpresa{
     List<Cliente> FacturasCliente=new ArrayList();
     public RMICessa() throws RemoteException {
         super();
+        
+        
+        
+        
+        
+        //insertando datos de forma manual para simular una base de datos
+        Empresa empresa=new Empresa("cessa",524L);
+        
+        Cliente cliente1=new Cliente();
+        Cliente cliente2=new Cliente();
+        
+        cliente1.idCliente=1;
+        cliente2.idCliente=2;
+        
+        Factura factura1=new Factura(empresa,114,Mes.diciembre,2021,170);
+        Factura factura2=new Factura(empresa,225,Mes.enero,2022,150);
+        Factura factura3=new Factura(empresa,321,Mes.enero,2022,101);
+        Factura factura4=new Factura(empresa,1125,Mes.febrero,2022,200);
+        Factura factura5=new Factura(empresa,2245,Mes.febrero,2022,150);
+        cliente1.facturasPendientes.add(factura1);
+        cliente1.facturasPendientes.add(factura3);
+        cliente1.facturasPendientes.add(factura5);
+        cliente2.facturasPendientes.add(factura2);
+        cliente2.facturasPendientes.add(factura4);
+        
+        this.FacturasCliente.add(cliente1);
+        this.FacturasCliente.add(cliente2);
+        //////////////////////////////////////////////////////////////////
     }
 
     @Override

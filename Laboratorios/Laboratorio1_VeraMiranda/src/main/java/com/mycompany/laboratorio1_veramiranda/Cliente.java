@@ -12,7 +12,7 @@ import java.util.List;
  * @author HP
  */
 public class Cliente {
-    int idCliente;
+    public int idCliente;
     public List<Factura> facturasPendientes=new ArrayList();
 
     public int getIdCliente() {

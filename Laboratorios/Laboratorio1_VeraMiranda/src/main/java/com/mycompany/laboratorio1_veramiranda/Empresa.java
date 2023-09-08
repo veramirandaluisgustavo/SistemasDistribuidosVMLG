@@ -9,8 +9,8 @@ package com.mycompany.laboratorio1_veramiranda;
  * @author HP
  */
 public class Empresa {
-    String nombre;
-    long NIT;
+    public String nombre;
+    public long NIT;
 
     public Empresa(String nombre, long NIT) {
         this.nombre = nombre;
