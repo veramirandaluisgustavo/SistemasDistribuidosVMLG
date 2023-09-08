@@ -25,8 +25,9 @@ public class ServidorBanco {
        
         try {
             Banco banco=new Banco();
-            LocateRegistry.createRegistry(1102); //levantar el servidor de registro;
-            Naming.bind("HolaMundo",banco);
+            LocateRegistry.getRegistry(1099); //levantar el servidor de registro;
+            Naming.bind("ServidorBanco",banco);
+            System.out.println("conexion al servidor correcto");
         } catch (RemoteException ex) {
             Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AlreadyBoundException ex) {

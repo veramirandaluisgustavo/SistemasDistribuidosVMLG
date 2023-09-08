@@ -22,8 +22,9 @@ public class ServidorCessa {
        
         try {
             RMICessa cessa=new RMICessa();
-            LocateRegistry.createRegistry(1100); //levantar el servidor de registro;
-            Naming.bind("HolaMundo",cessa);
+            LocateRegistry.getRegistry(1099); //levantar el servidor de registro;
+            Naming.bind("ServidorCessa",cessa);
+            System.out.println("conexion al servidor correcto");
         } catch (RemoteException ex) {
             Logger.getLogger(ServidorCessa.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AlreadyBoundException ex) {

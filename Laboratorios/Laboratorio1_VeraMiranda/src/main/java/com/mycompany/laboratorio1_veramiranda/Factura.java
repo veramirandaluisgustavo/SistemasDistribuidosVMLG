@@ -22,5 +22,10 @@ public class Factura {
         this.anio = anio;
         this.monto = monto;
     }
+
+    @Override
+    public String toString() {
+        return "Factura{" + "empresa=" + empresa + ", idfactura=" + idfactura + ", mes=" + mes + ", anio=" + anio + ", monto=" + monto + '}';
+    }
     
 }

@@ -22,8 +22,8 @@ public class ServidorCotes {
        
         try {
             RMICotes cotes=new RMICotes();
-            LocateRegistry.createRegistry(1101); //levantar el servidor de registro;
-            Naming.bind("HolaMundo",cotes);
+            LocateRegistry.createRegistry(1099); //levantar el servidor de registro;
+            Naming.bind("ServidorCotes",cotes);
             System.out.println("servidor correcto");
         } catch (RemoteException ex) {
             Logger.getLogger(ServidorCotes.class.getName()).log(Level.SEVERE, null, ex);
