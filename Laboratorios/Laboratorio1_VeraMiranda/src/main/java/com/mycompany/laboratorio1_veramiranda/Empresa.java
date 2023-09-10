@@ -4,11 +4,13 @@
  */
 package com.mycompany.laboratorio1_veramiranda;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HP
  */
-public class Empresa {
+public class Empresa implements Serializable{
     public String nombre;
     public long NIT;
 

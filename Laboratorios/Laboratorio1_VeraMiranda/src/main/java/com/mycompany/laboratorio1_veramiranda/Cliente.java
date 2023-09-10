@@ -4,6 +4,7 @@
  */
 package com.mycompany.laboratorio1_veramiranda;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author HP
  */
-public class Cliente {
+public class Cliente implements Serializable{
     public int idCliente;
     public List<Factura> facturasPendientes=new ArrayList();
 

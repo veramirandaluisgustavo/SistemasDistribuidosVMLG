@@ -4,11 +4,13 @@
  */
 package com.mycompany.laboratorio1_veramiranda;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HP
  */
-public class Factura {
+public class Factura implements Serializable{
     Empresa empresa;
     int idfactura;
     Mes mes;

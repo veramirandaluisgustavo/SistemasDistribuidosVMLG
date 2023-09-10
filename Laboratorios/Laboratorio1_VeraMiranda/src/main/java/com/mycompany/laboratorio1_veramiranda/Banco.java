@@ -4,6 +4,7 @@
  */
 package com.mycompany.laboratorio1_veramiranda;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -16,7 +17,7 @@ import java.util.stream.Stream;
  *
  * @author HP
  */
-public class Banco extends UnicastRemoteObject implements IBanco{
+public class Banco extends UnicastRemoteObject implements IBanco,Serializable{
     Registry registry=LocateRegistry.getRegistry(1099);
     IEmpresa cessa;
     IEmpresa cotes;        
