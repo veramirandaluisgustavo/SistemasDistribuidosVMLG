@@ -29,6 +29,7 @@ public class Server extends ReceiverAdapter {
     private void iniciarServidor() throws Exception {
         JChannel channel = new JChannel();
         channel.setReceiver(this);
+        
         channel.connect(CANAL);
 
         System.out.println("Servidor de Votación " + NOMBRE_SERVIDOR + " iniciado.");
