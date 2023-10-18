@@ -45,7 +45,7 @@ public class Cliente {
     public static void enviarNumero()
     {
         Scanner scanf = new Scanner(System.in);
-        String host="192.168.1.10";
+        String host="localhost";
             int puerto =5000;
             DataInputStream in;
             DataOutputStream out;
